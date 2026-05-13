@@ -11,6 +11,7 @@ import { addToCart } from "../../services/cartService";
 import { checkoutDirect } from "../../services/orderSevice"; 
 import Swal from "sweetalert2";
 import AuthModal from "../../components/Navbar/AuthModal";
+import { Helmet } from "react-helmet-async";
 
 export default function ProductDetailPage() {
   const [loadingRelated, setLoadingRelated] = useState(true);
@@ -490,8 +491,50 @@ export default function ProductDetailPage() {
     ? ((discountPrice / normalPrice) * 100).toFixed(0)
     : "0";
 
+  // SEO: Structured Data (JSON-LD)
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.images?.map((img) => 
+      img.image_url?.startsWith("http") ? img.image_url : `${import.meta.env.VITE_API_BASE}${img.image_url}`
+    ),
+    "description": product.description || `Beli ${product.name} dengan harga terbaik di Anandam Computer.`,
+    "sku": activeVariant?.sku_seller || product.sku_seller || product.id,
+    "brand": {
+      "@type": "Brand",
+      "name": product.brand?.name || "Anandam Computer"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": window.location.href,
+      "priceCurrency": "IDR",
+      "price": finalPrice,
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": isOutOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock"
+    }
+  };
+
   return (
     <>
+      <Helmet>
+        <title>{`${product.name} - Anandam Computer`}</title>
+        <meta name="description" content={product.description?.substring(0, 160) || `Beli ${product.name} dengan harga terbaik. Tersedia garansi resmi dan pengiriman cepat.`} />
+        <link rel="canonical" href={window.location.href} />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={`${product.name} - Anandam Computer`} />
+        <meta property="og:description" content={product.description?.substring(0, 160)} />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="product" />
+        <meta property="og:image" content={product.images?.[0]?.image_url?.startsWith("http") ? product.images[0].image_url : `${import.meta.env.VITE_API_BASE}${product.images?.[0]?.image_url}`} />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
+
       <div className="max-w-7xl mx-auto bg-white">
         <div className="max-w-7xl px-4 lg:px-2 py-3 overflow-x-auto whitespace-nowrap scrollbar-hide">
           <Breadcrumb

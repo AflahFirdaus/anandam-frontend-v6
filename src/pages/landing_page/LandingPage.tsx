@@ -16,6 +16,7 @@ import GroupingProductSlider from "../../components/GroupingProduct";
 import PopularProduct from "../../components/PopularProduct";
 import { getTikTokLiveStatus } from "../../services/tiktokService";
 import PromoProductSlider from "../../components/PromoProduct";
+import { Helmet } from "react-helmet-async";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -550,6 +551,14 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-blue-50">
+      <Helmet>
+        <title>Anandam Computer - Toko Komputer Terlengkap di Yogyakarta</title>
+        <meta name="description" content="Anandam Computer menyediakan berbagai macam Laptop, PC Rakitan, Komponen Komputer, dan Aksesoris terlengkap di Yogyakarta. Harga kompetitif dan garansi resmi." />
+        <link rel="canonical" href="https://anandamid.com/" />
+        <meta property="og:title" content="Anandam Computer - Toko Komputer Terlengkap di Yogyakarta" />
+        <meta property="og:description" content="Pusat belanja Laptop, PC Rakitan, dan Sparepart Komputer terbaik di Jogja. Promo menarik setiap hari!" />
+        <meta property="og:image" content="https://anandamid.com/anandam-logo.svg" />
+      </Helmet>
       {/* ================= HERO BANNER ================= */}
       <section className="w-full bg-white">
         {loadingBanners ? (

@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Butterpop';
+  src: url('/fonts/Butterpop.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cocogoose';
+  src: url('/fonts/Cocogoose-Pro-Semilight-trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'StretchPro';
+  src: url('/fonts/StretchPro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: black !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0 }
+  to { transform: scale(1); opacity: 1 }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.25s ease-out;
+}
+
+/* --- ANIMASI DROPDOWN (Dua Arah) --- */
+
+.dropdown-container {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 0.75rem; /* mt-3 */
+  width: 1100px;
+  background-color: white;
+  color: #374151; /* text-gray-700 */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  padding: 1.25rem; /* p-5 */
+  z-index: 50;
+  border-bottom-left-radius: 0.75rem; /* rounded-b-xl */
+  border-bottom-right-radius: 0.75rem;
+
+  /* Animasi Awal (Hidden State) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+/* State ketika terbuka */
+.dropdown-container.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.animate-dropdown {
+  animation: slideDownDropdown 0.25s ease-out forwards;
+}
+
+/* Base style untuk container button border */
+.draw-border-btn {
+  position: relative;
+  padding: 6px 12px; /* Sesuaikan padding agar proporsional */
+}
+
+/* Base style untuk semua garis */
+.draw-border-btn span.line {
+  position: absolute;
+  background-color: #1d4ed8; /* Warna blue-700 / primary */
+  transition: all 0.2s linear;
+}
+
+/* Setup posisi awal garis */
+.line-top { top: 0; left: 0; width: 0; height: 2px; }
+.line-right { top: 0; right: 0; width: 2px; height: 0; }
+.line-bottom { bottom: 0; right: 0; width: 0; height: 2px; }
+.line-left { bottom: 0; left: 0; width: 2px; height: 0; }
+
+/* Logika Hover & Active (Berurutan) */
+.draw-border-btn:hover .line-top,
+.draw-border-btn.active-border .line-top {
+  width: 100%;
+  transition-delay: 0s;
+}
+
+.draw-border-btn:hover .line-right,
+.draw-border-btn.active-border .line-right {
+  height: 100%;
+  transition-delay: 0.2s;
+}
+
+.draw-border-btn:hover .line-bottom,
+.draw-border-btn.active-border .line-bottom {
+  width: 100%;
+  transition-delay: 0.4s;
+}
+
+.draw-border-btn:hover .line-left,
+.draw-border-btn.active-border .line-left {
+  height: 100%;
+  transition-delay: 0.6s;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to { opacity: 1; backdrop-filter: blur(4px); }
+}
+
+@keyframes backdropOut {
+  from { opacity: 1; backdrop-filter: blur(4px); }
+  to { opacity: 0; backdrop-filter: blur(0px); }
+}
+
+/* Animasi Modal (Zoom & Slide) */
+@keyframes zoomInSmooth {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+@keyframes zoomOutSmooth {
+  from { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+  to { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(20px); 
+  }
+}
+
+/* Class Helper */
+.animate-backdrop-in {
+  animation: backdropIn 0.3s ease-out forwards;
+}
+
+.animate-backdrop-out {
+  animation: backdropOut 0.3s ease-in forwards;
+}
+
+.animate-zoom-in-smooth {
+  animation: zoomInSmooth 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-zoom-out-smooth {
+  animation: zoomOutSmooth 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

@@ -69,7 +69,7 @@ export default function DesktopNavLinks({ groupings }: { groupings: Grouping[] }
                 Tentang Kami
               </div>
               <div
-                onClick={() => { navigate("/product-katalog"); setOpen(false); }}
+                onClick={() => { navigate("/products"); setOpen(false); }}
                 className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-primary cursor-pointer transition-colors"
               >
                 {/* <BookOpen size={18} /> */}

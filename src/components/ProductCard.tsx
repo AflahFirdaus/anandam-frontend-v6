@@ -35,7 +35,7 @@ const ProductCard: React.FC<Props> = ({
   const hasDiscount = discountValue > 0;
 
   const productSlug = `${slugify(product.name)}--${product.id}`;
-  const productLink = `${window.location.origin}/product-katalog/${productSlug}`;
+  const productLink = `${window.location.origin}/products/${productSlug}`;
   const message = `Hai, saya ingin bertanya mengenai produk berikut:\n\nNama Produk: ${product.name}\nLink Produk: ${productLink}\n\nTerima kasih.`;
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
@@ -69,7 +69,7 @@ const ProductCard: React.FC<Props> = ({
   if (product.brand?.id && product.brand?.name) {
     metaItems.push({
       label: product.brand.name,
-      onClick: () => navigate(`/product-katalog?brand=${product.brand!.id}`),
+      onClick: () => navigate(`/products?brand=${product.brand!.id}`),
     });
   }
 
@@ -92,7 +92,7 @@ const ProductCard: React.FC<Props> = ({
   return (
     <div
       onClick={() =>
-        navigate(`/product-katalog/${productSlug}`, {
+        navigate(`/products/${productSlug}`, {
           state: { from, category: product.category?.name },
         })
       }

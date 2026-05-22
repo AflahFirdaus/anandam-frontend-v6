@@ -160,7 +160,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/product-katalog" className="hover:text-white">
+                <Link to="/products" className="hover:text-white">
                   Produk Katalog
                 </Link>
               </li>

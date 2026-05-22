@@ -199,7 +199,7 @@ export default function PromoBannerPage() {
                                     Promo ini belum memiliki produk dengan kriteria tersebut.
                                 </p>
                                 <button 
-                                    onClick={() => navigate('/product-katalog')}
+                                    onClick={() => navigate('/products')}
                                     className="px-6 py-2.5 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800"
                                 >
                                     Ke Katalog Produk

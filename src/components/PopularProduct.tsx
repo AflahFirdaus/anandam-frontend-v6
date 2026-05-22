@@ -78,7 +78,7 @@ export default function PopularProduct({ popularProducts }: PopularProductSlider
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/product-katalog?sort=popular");
+    navigate("/products?sort=popular");
   };
 
   // Auto Slide Logic 

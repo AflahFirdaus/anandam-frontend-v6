@@ -53,7 +53,7 @@ export function OfficialBrandSection() {
             return (
               <div
                 key={brand.id}
-                onClick={() => navigate(`/product-katalog?brand=${brand.id}`)}
+                onClick={() => navigate(`/products?brand=${brand.id}`)}
                 className="
                   brand-card h-[80px] sm:h-[100px] lg:h-[110px] flex items-center justify-center 
                   bg-white transition-all duration-300

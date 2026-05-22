@@ -59,9 +59,9 @@ function AppRoutes() {
       {/* ================= PUBLIC ROUTES (Ada Header/Footer) ================= */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/product-katalog" element={<ProductKatalogPage />} />
+        <Route path="/products" element={<ProductKatalogPage />} />
         <Route path="/product-categories" element={<CategoriesPage />} />
-        <Route path="/product-katalog/:id" element={<ProductDetailPage />} />
+        <Route path="/products/:id" element={<ProductDetailPage />} />
         <Route path="/product-grouping" element={<GroupingPage />} />
         <Route path="/company-profile" element={<CompanyProfile />} />
         <Route path="/terms" element={<TermsPage />} />
@@ -127,6 +127,16 @@ function AppContent() {
       offset: 80
     })
   }, [])
+
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).tagName === "IMG") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => document.removeEventListener("contextmenu", handleContextMenu);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

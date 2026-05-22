@@ -326,7 +326,7 @@ export default function ProductKatalogPage() {
                 <Breadcrumb
                     items={[
                         { label: "Home", path: "/" },
-                        { label: "Produk Katalog", path: "/product-katalog" },
+                        { label: "Produk Katalog", path: "/products" },
                         ...(categoryParam
                         ? [
                             {

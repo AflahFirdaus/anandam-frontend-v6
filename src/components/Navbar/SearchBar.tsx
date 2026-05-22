@@ -288,7 +288,7 @@ export default function SearchBar({
               <div
                 key={item.id}
                 onClick={() => {
-                  navigate(`/product-katalog/${slugify(item.name)}--${item.id}`);
+                  navigate(`/products/${slugify(item.name)}--${item.id}`);
                   setShowDropdown(false);
                 }}
                 className="flex items-center gap-3 px-3 py-3 hover:bg-gray-50 cursor-pointer"

@@ -87,7 +87,7 @@ export default function PromoProductSlider({ products, promoImageUrl }: PromoPro
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/product-katalog?promo=true");
+    navigate("/products?promo=true");
   };
 
   // ==========================================

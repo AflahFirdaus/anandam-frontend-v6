@@ -422,7 +422,7 @@ export default function Navbar() {
                           <button
                             onClick={() => {
                               setShowCartPreview(false);
-                              navigate("/product-katalog");
+                              navigate("/products");
                             }}
                             className="w-full py-2.5 border border-primary text-primary rounded-md text-sm font-bold hover:bg-primary/10 transition-all active:scale-95"
                           >
@@ -588,10 +588,10 @@ export default function Navbar() {
         </button>
 
         <button 
-          onClick={() => navigate("/product-katalog")} 
-          className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${location.pathname === "/product-katalog" ? "text-primary" : "text-gray-400"}`}
+          onClick={() => navigate("/products")} 
+          className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${location.pathname === "/products" ? "text-primary" : "text-gray-400"}`}
         >
-          <Package size={22} strokeWidth={location.pathname === "/product-katalog" ? 2.5 : 2} />
+          <Package size={22} strokeWidth={location.pathname === "/products" ? 2.5 : 2} />
           <span className="text-[10px] font-semibold">Katalog</span>
         </button>
 

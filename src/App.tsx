@@ -46,7 +46,8 @@ import ChangePasswordPage from "./pages/landing_page/User/ChangePasswordPage";
 import ResetPasswordPage from "./pages/landing_page/User/ResetPasswordPage";
 import PromoBannerPage from "./pages/landing_page/PromoBannerPage";
 import AdminUsersPage from "./pages/admin_panel/UserPage";
-
+import ChatPage from "./pages/chat/ChatPage";
+import { SocketProvider } from "./contexts/SocketContext";
 
 // ================= ROUTES =================
 function AppRoutes() {
@@ -78,6 +79,7 @@ function AppRoutes() {
 
         {/* NESTED ROUTING USER */}
         <Route element={<UserProtectedRoute />}>
+          <Route path="/chat" element={<ChatPage />} />
           <Route path="/user" element={<UserLayout />}>
             <Route path="account/profile" element={<ProfilePage />} />
             <Route path="account/addresses" element={<UserAddressPage />} />
@@ -98,6 +100,7 @@ function AppRoutes() {
         }>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="chat" element={<ChatPage />} />
           <Route path="category" element={<CategoryPage />} />
           <Route path="product" element={<AdminProductPage />} />
           <Route path="update-massal" element={<ProductUpdatePage />} />
@@ -162,7 +165,9 @@ function AppContent() {
 export default function App() { 
   return (
     <BrowserRouter>
-      <AppContent />
+      <SocketProvider>
+        <AppContent />
+      </SocketProvider>
     </BrowserRouter>
   )
 }
